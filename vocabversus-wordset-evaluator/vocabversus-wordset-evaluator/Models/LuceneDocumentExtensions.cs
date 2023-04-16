@@ -15,7 +15,7 @@ namespace vocabversus_wordset_evaluator.Models
             {
                 Id = Guid.Parse(wordSetDocument.Fields.FirstOrDefault(f => f.Name == "Id")?.GetStringValue() ?? Guid.Empty.ToString()),
                 Name = wordSetDocument.Fields.FirstOrDefault(f => f.Name == "Name")?.GetStringValue() ?? string.Empty,
-                Words = wordSetDocument.Fields.FirstOrDefault(f => f.Name == "Words")?.GetStringValue()?.Split() ?? Array.Empty<string>()
+                Words = wordSetDocument.Fields.Where(f => f.Name == "Words").Select(w => w.GetStringValue()).ToArray() ?? Array.Empty<string>()
             };
         }
     }

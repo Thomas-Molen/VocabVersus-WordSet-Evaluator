@@ -37,9 +37,6 @@ namespace vocabversus_wordset_evaluator.Services
         public Guid CreateWordSet(string name, params string[] words)
         {
             if (WordSetNameExists(name)) throw new ArgumentException($"Word set with given name already exists: {name}");
-            var wordListBuilder = new StringBuilder();
-            wordListBuilder.AppendJoin<string>(' ', words);
-            string wordsMap = wordListBuilder.ToString().ToLower();
             Guid wordSetId = Guid.NewGuid();
 
             // Add wordSet to the Lucene Index
@@ -48,9 +45,12 @@ namespace vocabversus_wordset_evaluator.Services
                 // Reference fields
                 new StringField("Id", wordSetId.ToString(), Field.Store.YES),
                 new StringField("Name", name, Field.Store.YES),
-                // Search fields
-                new TextField("Words", wordsMap, Field.Store.YES),
             };
+            // add word search field
+            foreach (var word in words)
+            {
+                document.AddStringField("Words", word.ToLower(), Field.Store.YES);
+            }
             _writer.AddDocument(document);
             _writer.Commit();
 
@@ -92,12 +92,6 @@ namespace vocabversus_wordset_evaluator.Services
         public bool HasWordMatch(Guid wordSetId, string word, int incorrectCharMargin = 0)
         {
             IndexSearcher searcher = CreateSearcher();
-
-            string[] fields = { "Id", "Words" };
-            var queryParser = new MultiFieldQueryParser(_version, fields, _analyzer);
-
-            // Remove whitespaces to avoid dubble word matching
-            word = string.Concat(word.Where(c => !char.IsWhiteSpace(c)));
 
             // Create search queries
             Query wordSetQuery = new TermQuery(new Term("Id", wordSetId.ToString()));

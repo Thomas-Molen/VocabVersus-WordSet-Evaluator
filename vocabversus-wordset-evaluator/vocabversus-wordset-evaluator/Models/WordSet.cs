@@ -17,6 +17,6 @@
         /// <summary>
         /// Words contained within word set
         /// </summary>
-        public IEnumerable<string> Words { get; set; } = new List<string>();
+        public IEnumerable<string> Words { get; set; } = Array.Empty<string>();
     }
 }
