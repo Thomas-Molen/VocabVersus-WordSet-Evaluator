@@ -6,8 +6,10 @@ using Lucene.Net.QueryParsers.Classic;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
 using Lucene.Net.Util;
+using Microsoft.Extensions.Options;
 using System.Text;
 using vocabversus_wordset_evaluator.Models;
+using vocabversus_wordset_evaluator.Utility.Configuration;
 
 namespace vocabversus_wordset_evaluator.Services
 {
@@ -18,11 +20,11 @@ namespace vocabversus_wordset_evaluator.Services
         private readonly FSDirectory _directory;
         private readonly IndexWriter _writer;
 
-        public WordSetService()
+        public WordSetService(IOptions<LuceneSettings> luceneSettings)
         {
             _version = LuceneVersion.LUCENE_48;
             _analyzer = new StandardAnalyzer(_version);
-            _directory = FSDirectory.Open("lucenedb");
+            _directory = FSDirectory.Open(luceneSettings.Value.Path);
             var config = new IndexWriterConfig(_version, _analyzer);
             _writer = new IndexWriter(_directory, config);
         }
