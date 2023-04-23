@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vocabversus-wordset-evaluator", "vocabversus-wordset-evaluator/vocabversus-wordset-evaluator.csproj", "{5F4E9624-EAB2-4A2F-8B43-A416C3EC6249}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vocabversus-wordset-evaluator", "vocabversus-wordset-evaluator\vocabversus-wordset-evaluator.csproj", "{5F4E9624-EAB2-4A2F-8B43-A416C3EC6249}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vocabversus-wordset-evaluator.tests", "vocabversus-wordset-evaluator.tests\vocabversus-wordset-evaluator.tests.csproj", "{44288082-9D78-4908-BF6A-55D143B943DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5F4E9624-EAB2-4A2F-8B43-A416C3EC6249}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F4E9624-EAB2-4A2F-8B43-A416C3EC6249}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F4E9624-EAB2-4A2F-8B43-A416C3EC6249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44288082-9D78-4908-BF6A-55D143B943DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44288082-9D78-4908-BF6A-55D143B943DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44288082-9D78-4908-BF6A-55D143B943DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44288082-9D78-4908-BF6A-55D143B943DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
